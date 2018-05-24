@@ -1,0 +1,17 @@
+{
+  "name": "jike-stickers",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/kokdemo/jike-stickers.git",
+  "author": "kok liu <kokdemo@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "vue": "^2.5.16"
+  },
+  "devDependencies": {
+    "parcel-bundler": "^1.8.1"
+  },
+  "scripts": {
+    "start": "parcel index.html"
+  }
+}
