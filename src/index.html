@@ -1,0 +1,28 @@
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="initial-scale=1, maximum-scale=3, minimum-scale=1, user-scalable=no">
+  <title>即刻表情包</title>
+  <link href="https://fonts.loli.net//css?family=Lato:900" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss/dist/tailwind.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="./index.css">
+</head>
+
+<body style="display:flex;
+align-items:center;
+justify-content:center;">
+  <div id="main" class="container bg-white mx-auto max-w-sm overflow-hidden p-6">
+    <div class="title text-center font-sans text-2xl mt-8 font-light">即刻表情包</div>
+    <div class="title text-center font-sans text-sm mt-2 font-light text-grey">输入文字，保存图片，就这么简单</div>
+    <div class="form flex mx-auto" style="width: 240px;">
+      <input v-model="text" class="mt-8 font-light text-center leading-loose text-2xl border-solid border-grey-light border rounded-lg" style="flex: 1;width: 240px;height: 3rem;">
+    </div>
+    <div id="canvas" class="hidden"></div>
+    <div id="img" class="mt-6 text-center">
+      <img :src="dataUrl" style="width: 240px;">
+    </div>
+  </div>
+  <script src="./index.js"></script>
+</body>
+
+</html>
