@@ -5,7 +5,7 @@
 vue
 parceljs
 konvajs
-
+tailwind
 
 ### 参考
 里面的库和思路来自
