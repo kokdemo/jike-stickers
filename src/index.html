@@ -19,7 +19,7 @@ justify-content:center;">
     </div>
     <div id="canvas" class="hidden"></div>
     <div id="img" class="mt-6 text-center">
-      <img :src="dataUrl" style="width: 240px;">
+      <img @click="downloadImg()" :src="dataUrl" style="width: 240px;">
     </div>
   </div>
   <script src="./index.js"></script>

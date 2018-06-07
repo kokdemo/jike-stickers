@@ -35,6 +35,15 @@ function renderText(text, offsetX, offsetY, layer) {
     })
 }
 
+function downloaduri(uri,name){
+    var link = document.createElement('a');
+    link.download = name+'.png';
+    link.href = uri;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+}
+
 var sticker = new Vue({
     el: '#main',
     data: {
@@ -77,6 +86,12 @@ var sticker = new Vue({
                 quality:1
             }
             this.dataUrl = document.getElementsByTagName('canvas')[0].toDataURL('image/png');
+        },
+        downloadImg(){
+            var dataUrl = this.dataUrl;
+            var name = this.text;
+            downloaduri(dataUrl,name);
+
         }
     }
 })

@@ -17,6 +17,6 @@
   },
   "scripts": {
     "start": "parcel ./src/index.html",
-    "build": "parcel build ./src/index.html -d ./"
+    "build": "parcel build ./src/index.html -d ./jike-stickers"
   }
 }
