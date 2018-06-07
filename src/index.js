@@ -2,17 +2,20 @@ import Vue from 'vue/dist/vue.js';
 import Konva from "konva";
 import _ from 'lodash'
 
-var fontSize = 58;
-var fontSizeLite = 45;
+var fontSizes = [88,58,45];
 
-function renderText(text, offsetX, offsetY, layer) {
+function renderText(text, offsetX, offsetY, layer, width ,height,type) {
     var bigger = Math.max(offsetX, offsetY)
     _.times(bigger, (n) => {
+        var fontID = 1;
+        if(type == 1){
+            var fontID = 0;
+        }
         var x = offsetX * n / bigger
         var y = offsetY * n / bigger
         var tempText = new Konva.Text({
             text: text,
-            fontSize: fontSize,
+            fontSize: fontSizes[fontID],
             fontFamily: 'Lato,YouYuan',
             fill: '#FFFFFF',
             align: 'center',
@@ -24,16 +27,13 @@ function renderText(text, offsetX, offsetY, layer) {
             shadowBlur: 0,
             shadowOpacity: 1
         });
-        if(tempText.width() >= 230){
-            tempText.fontSize(fontSizeLite);
-            if(tempText.width() >= 240){
-                alert('大笨蛋，太长了')
-            }
+        if(tempText.width() >= width-10){
+            tempText.fontSize(fontSizes[2]);
         }
         var textWidth = tempText.width();
         var textHeight = tempText.height();
-        tempText.x((240 - textWidth) / 2);
-        tempText.y((140 - textHeight -5) / 2);
+        tempText.x((width - textWidth) / 2);
+        tempText.y((height - textHeight -5) / 2);
         layer.add(tempText);
     })
 }
@@ -51,37 +51,53 @@ var sticker = new Vue({
     el: '#main',
     data: {
         text: 'J',
-        dataUrl: ''
+        dataUrl: '',
+        tab:0
     },
     mounted: function () {
-        this.addText()
+        this.addText(0)
     },
     watch:{
         text:function(val){
-            this.addText()
+            var temp = this.tab;
+            this.addText(temp)
         }
     },
     methods: {
-        addText() {
+        changeTab(num){
+            this.tab = num;
+            if(num == 0){
+                this.text = 'J';
+            }else{
+                this.text = 'Jiker'
+            }
+            
+        },
+        addText(num) {
+            // 0 sticker 1 avater
             var text = this.text;
+            var size = [240,140,60];
+            if(num == 1){
+                size = [300,300,150]
+            }
             var stage = new Konva.Stage({
                 container: 'canvas',
-                width: 240,
-                height: 140,
+                width: size[0],
+                height: size[1],
             });
             var layer = new Konva.Layer();
             var rect = new Konva.Rect({
                 x: 0,
                 y: 0,
-                width: 240,
-                height: 140,
+                width: size[0],
+                height: size[1],
                 fill: '#FEE312',
-                cornerRadius: 60
+                cornerRadius: size[2]
             });
             // add the shape to the layer
             layer.add(rect);
             // add text with shadows
-            renderText(text, 5, 5, layer);
+            renderText(text, 5, 5, layer,size[0],size[1],num);
             // add the layer to the stage
             stage.add(layer);
             var config = {

@@ -12,7 +12,7 @@
 align-items:center;
 justify-content:center;">
   <div id="main" class="container bg-white mx-auto max-w-sm overflow-hidden p-6">
-    <div class="title text-center font-sans text-2xl mt-8 font-light"><a @click="tab('sticker')">即刻表情包</a>/<a @click="tab('avatar')">即刻头像</a></div>
+    <div class="title text-center font-sans text-2xl mt-8 font-light text-grey-light"><a @click="changeTab(0)" :class="{'text-black':(tab==0)}">即刻表情包</a>/<a @click="changeTab(1)" :class="{'text-black':(tab==1)}">即刻头像</a></div>
     <div class="title text-center font-sans text-sm mt-2 font-light text-grey">输入文字，保存图片，就这么简单</div>
     <div class="form flex mx-auto" style="width: 240px;">
       <input v-model="text" class="mt-8 font-light text-center leading-loose text-2xl border-solid border-grey-light border rounded-lg" style="flex: 1;width: 240px;height: 3rem;">
