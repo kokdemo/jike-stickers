@@ -26,6 +26,9 @@ function renderText(text, offsetX, offsetY, layer) {
         });
         if(tempText.width() >= 230){
             tempText.fontSize(fontSizeLite);
+            if(tempText.width() >= 240){
+                alert('大笨蛋，太长了')
+            }
         }
         var textWidth = tempText.width();
         var textHeight = tempText.height();
