@@ -3,6 +3,7 @@ import Konva from "konva";
 import _ from 'lodash'
 
 var fontSize = 58;
+var fontSizeLite = 45;
 
 function renderText(text, offsetX, offsetY, layer) {
     var bigger = Math.max(offsetX, offsetY)
@@ -23,6 +24,9 @@ function renderText(text, offsetX, offsetY, layer) {
             shadowBlur: 0,
             shadowOpacity: 1
         });
+        if(tempText.width() >= 230){
+            tempText.fontSize(fontSizeLite);
+        }
         var textWidth = tempText.width();
         var textHeight = tempText.height();
         tempText.x((240 - textWidth) / 2);

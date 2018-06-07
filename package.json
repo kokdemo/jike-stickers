@@ -16,7 +16,7 @@
     "parcel-bundler": "^1.8.1"
   },
   "scripts": {
-    "start": "parcel index.html",
-    "build": "parcel build ./src/index.html -d ./"
+    "start": "parcel ./src/index.html",
+    "build": "parcel build ./src/index.html -d ./jike-stickers/"
   }
 }
