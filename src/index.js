@@ -2,7 +2,7 @@ import Vue from 'vue/dist/vue.js';
 import Konva from "konva";
 import _ from 'lodash';
 import './index.css';
-import catImage from './cat.png';
+import catImage from 'http://wocai.de/jike-stickers/src/cat.png';
 
 var fontSizes = [88,58,45];
 
