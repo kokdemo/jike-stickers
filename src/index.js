@@ -1,10 +1,16 @@
 import Vue from 'vue/dist/vue.js';
 import Konva from "konva";
-import _ from 'lodash'
+import _ from 'lodash';
+import './index.css';
+import catImage from './cat.png';
 
 var fontSizes = [88,58,45];
 
 function renderText(text, offsetX, offsetY, layer, width ,height,type) {
+    var shadowColor = '#5EC1FA';
+    if(type == 1){
+        shadowColor = '#BD7222'
+    }
     var bigger = Math.max(offsetX, offsetY)
     _.times(bigger, (n) => {
         var fontID = 1;
@@ -19,7 +25,7 @@ function renderText(text, offsetX, offsetY, layer, width ,height,type) {
             fontFamily: 'Lato,YouYuan',
             fill: '#FFFFFF',
             align: 'center',
-            shadowColor: "#5EC1FA",
+            shadowColor: shadowColor,
             shadowOffset: {
                 x: x,
                 y: y
@@ -36,6 +42,39 @@ function renderText(text, offsetX, offsetY, layer, width ,height,type) {
         tempText.y((height - textHeight -5) / 2);
         layer.add(tempText);
     })
+}
+
+function renderStage(width,height){
+    return new Konva.Stage({
+        container: 'canvas',
+        width: width,
+        height: height,
+    });
+}
+
+function renderBackground(type,width,height,radius){
+    if(type != 1){
+        // 黄白
+        var rect = new Konva.Rect({
+            x: 0,
+            y: 0,
+            width: width,
+            height: height,
+            fill: '#FEE312',
+            cornerRadius: radius
+        });
+    }else{
+        var img = new Image();
+        img.src = catImage;
+        var rect = new Konva.Image({
+            x:0,
+            y:0,
+            width:width,
+            height:height,
+            image:img
+        });
+    }
+    return rect;
 }
 
 function downloaduri(uri,name){
@@ -71,34 +110,22 @@ var sticker = new Vue({
             }else{
                 this.text = 'Jiker'
             }
-            
         },
         addText(num) {
-            // 0 sticker 1 avater
+            // 0 sticker 2 avater 1 cat-sticker
             var text = this.text;
+            // 创建stage
             var size = [240,140,60];
-            if(num == 1){
+            if(num == 2){
                 size = [300,300,150]
             }
-            var stage = new Konva.Stage({
-                container: 'canvas',
-                width: size[0],
-                height: size[1],
-            });
+            var stage = renderStage(size[0],size[1]);          
+            // 加载图层1
             var layer = new Konva.Layer();
-            var rect = new Konva.Rect({
-                x: 0,
-                y: 0,
-                width: size[0],
-                height: size[1],
-                fill: '#FEE312',
-                cornerRadius: size[2]
-            });
-            // add the shape to the layer
-            layer.add(rect);
-            // add text with shadows
+            // 加载边框
+            var rect = renderBackground(num,size[0],size[1],size[2]);
+            layer.add(rect)
             renderText(text, 5, 5, layer,size[0],size[1],num);
-            // add the layer to the stage
             stage.add(layer);
             var config = {
                 mineType:'image/jpeg',
