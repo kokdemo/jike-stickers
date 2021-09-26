@@ -13,7 +13,7 @@
     "vue": "^2.5.16"
   },
   "devDependencies": {
-    "parcel-bundler": "^1.8.1"
+    "parcel-bundler": "^1.12.5"
   },
   "scripts": {
     "start": "parcel ./src/index.html",
